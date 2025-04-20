@@ -16,11 +16,60 @@ const { frontmatter } = Astro.props;
     <br>
     Written by: {frontmatter.author}
   </p>
-  <p><em>{frontmatter.description}</em></p>
+
+  <div class="tags">
+    <p>Tags: </p>
+    {
+      frontmatter.tags.map((tag: string) =>
+        <p class="tag">
+          <a href={`/astro-tutorial/tags/${tag}`}>
+            {tag}
+          </a>
+        </p>
+      )
+    }
+  </div>
+
+  <p class='description'><em>{frontmatter.description}</em></p>
+
   <img
     class='hero-image'
     src={frontmatter.image.url}
     alt={frontmatter.image.alt}
   />
+
   <slot />
 </BaseLayout>
+
+<style>
+  a {
+    color: #00539F;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    p {
+      margin: 0.25em;
+      padding: .5em 1em;
+      font-size: 1.15em;
+
+      &.tag {
+        background-color: #F8FCFD;
+        border: dotted 1px #a1a1a1;
+        border-radius: .5em;
+      }
+    }
+  }
+
+  .description {
+    font-size: 1.25em;
+    font-weight: 500;
+  }
+
+  /* First image of blog post: */
+  .hero-image {
+    width: 40vw;
+  }
+</style>
