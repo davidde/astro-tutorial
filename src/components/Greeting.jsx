@@ -1,3 +1,5 @@
+// This is Preact code!
+
 import { useState } from 'preact/hooks';
 
 export default function Greeting({messages}) {
